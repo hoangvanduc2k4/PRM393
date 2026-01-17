@@ -1,27 +1,22 @@
-Future<String> fetchData() async {
-  await Future.delayed(const Duration(seconds: 2));
-  return "Data loaded successfully";
+class Settings {
+  static Settings? _instance;
+
+  Settings._internal();
+
+  factory Settings() {
+    _instance ??= Settings._internal();
+    return _instance!;
+  }
+
+  String theme = "light";
 }
 
-Stream<int> numberStream() async* {
-  for (int i = 1; i <= 3; i++) {
-    yield i;
-  }
-}
+void main() {
+  final s1 = Settings();
+  final s2 = Settings();
 
-Future<void> main() async {
-  print("Fetching...");
-  String result = await fetchData();
-  print(result);
+  print("Identical: ${identical(s1, s2)}");
 
-  String? username;
-  String finalName = username ?? "Guest";
-  print("Username after ?? = $finalName");
-
-  username = "Duc";
-  print("Username after assign = ${username!}");
-
-  await for (int value in numberStream()) {
-    print("Stream value: $value");
-  }
+  s1.theme = "dark";
+  print("s2 theme: ${s2.theme}");
 }
