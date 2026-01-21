@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:welcomeapp/utils/extensions/string_extensions.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -23,7 +24,10 @@ class IFormDivider extends StatelessWidget {
             endIndent: 5,
           ),
         ),
-        Text(dividerText, style: Theme.of(context).textTheme.labelMedium),
+        Text(
+          dividerText.capitalize,
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
         Flexible(
           child: Divider(
             color: dark ? TColors.darkGrey : TColors.grey,

@@ -16,5 +16,6 @@ class TTexts {
   static const String tCreateAccount = "Create Account";
 
   // -- Divider
-  static const String tOrSignInWith = "Or Sign in with";
+  static const String tOrSignInWith =
+      "          Or          Sign in     with           ";
 }
