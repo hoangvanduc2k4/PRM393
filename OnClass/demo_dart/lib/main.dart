@@ -1,22 +1,141 @@
-class Settings {
-  static Settings? _instance;
+import 'dart:async';
+import 'dart:math';
 
-  Settings._internal();
-
-  factory Settings() {
-    _instance ??= Settings._internal();
-    return _instance!;
-  }
-
-  String theme = "light";
-}
+import 'person.dart';
 
 void main() {
-  final s1 = Settings();
-  final s2 = Settings();
+  // int n = 9;
+  // for (int i = 1; i <= 10; i++) {
+  //   print('$i x $n = ${n * i}');
+  // }
+  //
+  // List<int> numbers = [4, 7, 12, 9, 15, 8, 22, 3];
+  // print('${findMax([])}');
+  //
+  // int sum = 0;
+  // for (int i = 0; i < numbers.length; i++) {
+  //   if (numbers[i] % 2 == 0) {
+  //     sum += numbers[i];
+  //   }
+  // }
+  // print(sum);
 
-  print("Identical: ${identical(s1, s2)}");
+  // List<String> names = ["An", "Bình", "Cường", "Dũng", "Mai", "Lan", "Hùng"];
+  // List<String> filteredName = names.where((name) => name.length >= 4).toList();
+  //
+  // filteredName.sort((a, b) => a.compareTo(b));
+  //
+  // print(filteredName);
 
-  s1.theme = "dark";
-  print("s2 theme: ${s2.theme}");
+  // print('${charFrequency('hello')}');
+
+  Person person1 = Person("Duc", 18);
+  person1.introduce();
+}
+
+String reverseString(String text) {
+  var result = '';
+  for (int i = text.length - 1; i >= 0; i--) {
+    result += text[i];
+  }
+  return result;
+}
+
+int countWord(String text, String c) {
+  int count = 0;
+  for (int i = 0; i < text.length; i++) {
+    if (text[i] == c) count++;
+  }
+  return count;
+}
+
+int findMax(List<int> numbers) {
+  if (numbers.isEmpty) {
+    return 0;
+  }
+  int max = numbers[0];
+  for (int i = 0; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+      max = numbers[i];
+    }
+  }
+  return max;
+}
+
+int countPrime(int start, int end) {
+  int count = 0;
+  for (int i = start; i <= end; i++) {
+    if (isPrime(i)) count++;
+  }
+  return count;
+}
+
+bool isPrime(int n) {
+  if (n <= 1) return false;
+  for (int i = 2; i <= sqrt(n); i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+
+List<T> removeDuplicates<T>(List<T> list) {
+  Set<T> newSet = list.toSet();
+  return newSet.toList();
+}
+
+bool isPalindrome(String s) {
+  String rev = s.split('').reversed.join('');
+  return rev.toLowerCase() == s.toLowerCase();
+}
+
+Map<String, int> charFrequency(String text) {
+  Map<String, int> dict = {};
+
+  for (int i = 0; i < text.length; i++) {
+    if (dict.containsKey(text[i])) {
+      dict[text[i]] = dict[text[i]]! + 1;
+    } else {
+      dict[text[i]] = 1;
+    }
+  }
+
+  return dict;
+}
+
+List<String> sortByLength(List<String> words) {
+  words.sort((a, b) => a.length.compareTo(b.length));
+  return words;
+}
+
+List<String> getEvenOddWords(List<int> numbers) {
+  List<String> result = numbers
+      .map((x) => x % 2 == 0 ? 'even' : 'odd')
+      .toList();
+  return result;
+}
+
+Future<String> delayedGreeting(String name) {
+  return Future.delayed(Duration(seconds: 2), () => 'Hello $name');
+}
+
+class Employee {
+  final String name;
+  final double salary;
+
+  Employee(this.name, this.salary);
+
+  void work() {
+    print("$name is working...");
+  }
+}
+
+class Manager extends Employee {
+  final int teamSize;
+
+  Manager(String name, double salary, this.teamSize) : super(name, salary);
+
+  @override
+  void work() {
+    print("$name is managing a team of $teamSize people...");
+  }
 }
