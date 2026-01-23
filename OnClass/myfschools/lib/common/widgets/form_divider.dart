@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:welcomeapp/utils/extensions/string_extensions.dart';
 
-import '../../../utils/constants/colors.dart';
-import '../../../utils/helpers/helper_functions.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/extensions/string_extensions.dart';
+import '../../utils/helpers/helper_functions.dart';
 
 class IFormDivider extends StatelessWidget {
   const IFormDivider({super.key, required this.dividerText});
