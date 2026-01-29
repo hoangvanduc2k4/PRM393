@@ -3,21 +3,28 @@ import 'package:flutter/material.dart';
 class LoginController extends ChangeNotifier {
   bool isLoading = false;
   String? errorMessage;
+  bool rememberMe = false;
 
-  Future<bool> login(String email, String password) async {
+  void toggleRememberMe(bool value) {
+    rememberMe = value;
+    notifyListeners();
+  }
+
+  Future<bool> login(String phoneNumber, String password) async {
     isLoading = true;
     errorMessage = null;
     notifyListeners();
 
     await Future.delayed(const Duration(milliseconds: 1500));
 
-    if (email == 'student@fpt.edu.vn' && password == '123456') {
+    // Mock logic: Allow any phone/pass for ease of testing or specific one
+    if (phoneNumber.isNotEmpty && password == '123456') {
       isLoading = false;
       notifyListeners();
       return true;
     } else {
       isLoading = false;
-      errorMessage = 'Invalid email or password';
+      errorMessage = 'Invalid phone number or password';
       notifyListeners();
       return false;
     }

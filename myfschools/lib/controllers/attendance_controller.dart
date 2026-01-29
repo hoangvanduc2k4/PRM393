@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../models/attendance_model.dart';
+import '../models/attendance_timeline_model.dart';
 
 class AttendanceController extends ChangeNotifier {
   bool isLoading = true;
-  List<AttendanceModel> attendanceList = [];
+  List<AttendanceTimelineModel> timelineList = [];
 
   AttendanceController() {
     loadAttendance();
@@ -15,7 +15,7 @@ class AttendanceController extends ChangeNotifier {
 
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    attendanceList = AttendanceModel.getMockData();
+    timelineList = AttendanceTimelineModel.getMockData();
     
     isLoading = false;
     notifyListeners();

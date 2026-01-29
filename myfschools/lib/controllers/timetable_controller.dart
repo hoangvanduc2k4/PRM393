@@ -21,12 +21,11 @@ class TimetableController extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> getSubjects() {
-    // Get unique subject codes
-    return _allSlots.map((e) => e.subjectCode).toSet().toList();
-  }
-
-  List<TimetableModel> getSlotsForSubject(String subjectCode) {
-    return _allSlots.where((e) => e.subjectCode == subjectCode).toList();
+  List<TimetableModel> getSlotsForDay(DateTime date) {
+    return _allSlots.where((e) => 
+      e.startTime.year == date.year && 
+      e.startTime.month == date.month && 
+      e.startTime.day == date.day
+    ).toList();
   }
 }
