@@ -1,56 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import '../../utils/constants/sizes.dart';
 
-class AppTextField extends StatelessWidget {
-  final String label;
-  final String? hint;
-  final TextEditingController controller;
-  final bool obscureText;
-  final TextInputType keyboardType;
-  final String? Function(String?)? validator;
-  final Widget? suffixIcon;
+class AppTextField extends StatefulWidget {
+  final String labelText;
   final IconData? prefixIcon;
+  final Widget? suffixIcon;
+  final bool obscureText;
+  final TextEditingController? controller;
 
   const AppTextField({
-    Key? key,
-    required this.label,
-    required this.controller,
-    this.hint,
-    this.obscureText = false,
-    this.keyboardType = TextInputType.text,
-    this.validator,
-    this.suffixIcon,
+    super.key,
+    required this.labelText,
     this.prefixIcon,
-  }) : super(key: key);
+    this.suffixIcon,
+    this.obscureText = false, // If true, we treat it as a password field with toggle
+    this.controller,
+  });
+
+  @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.obscureText;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-          ),
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: _obscureText,
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+                icon: Icon(_obscureText ? Iconsax.eye_slash : Iconsax.eye),
+              )
+            : widget.suffixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TSizes.inputFieldRadius),
         ),
-        const SizedBox(height: 8),
-        TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          validator: validator,
-          decoration: InputDecoration(
-            hintText: hint,
-            suffixIcon: suffixIcon,
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:myfschools/screens/home/home.dart';
 
+import '../../../common/widgets/app_button.dart';
+import '../../../common/widgets/app_text_field.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/constants/text_strings.dart';
+import '../../forgot_password/forgot_password.dart';
 
 class TLoginForm extends StatelessWidget {
   const TLoginForm({super.key});
@@ -15,21 +19,14 @@ class TLoginForm extends StatelessWidget {
         child: Column(
           children: [
             ///Phone
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: TTexts.phone,
-              ),
-            ),
+            AppTextField(labelText: TTexts.phone, prefixIcon: Iconsax.mobile),
             const SizedBox(height: TSizes.spaceBtwInputFields),
 
             ///Password
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: TTexts.password,
-                suffixIcon: Icon(Iconsax.eye_slash),
-              ),
+            AppTextField(
+              labelText: TTexts.password,
+              prefixIcon: Iconsax.password_check,
+              obscureText: true,
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields / 2),
 
@@ -47,7 +44,12 @@ class TLoginForm extends StatelessWidget {
 
                 ///Forgot password
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordScreen(),
+                    ),
+                  ),
                   child: const Text(TTexts.tForgetPassword),
                 ),
               ],
@@ -55,11 +57,11 @@ class TLoginForm extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwSections),
 
             ///Sign in button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text(TTexts.signIn),
+            AppButton(
+              text: TTexts.signIn,
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
