@@ -4,33 +4,10 @@ import 'dart:math';
 import 'person.dart';
 
 void main() {
-  // int n = 9;
-  // for (int i = 1; i <= 10; i++) {
-  //   print('$i x $n = ${n * i}');
-  // }
-  //
-  // List<int> numbers = [4, 7, 12, 9, 15, 8, 22, 3];
-  // print('${findMax([])}');
-  //
-  // int sum = 0;
-  // for (int i = 0; i < numbers.length; i++) {
-  //   if (numbers[i] % 2 == 0) {
-  //     sum += numbers[i];
-  //   }
-  // }
-  // print(sum);
-
-  // List<String> names = ["An", "Bình", "Cường", "Dũng", "Mai", "Lan", "Hùng"];
-  // List<String> filteredName = names.where((name) => name.length >= 4).toList();
-  //
-  // filteredName.sort((a, b) => a.compareTo(b));
-  //
-  // print(filteredName);
-
-  // print('${charFrequency('hello')}');
-
-  Person person1 = Person("Duc", 18);
-  person1.introduce();
+  Person p = Person('Mark', 'Smith', 22);
+  print(
+    'The person\'s name is ${p.firstName} ${p.lastName} and he is ${p.age}',
+  );
 }
 
 String reverseString(String text) {

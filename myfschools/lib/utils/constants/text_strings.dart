@@ -46,11 +46,32 @@ class TTexts {
 
   // -- Utilities
   static const String forms = "Đơn từ";
-  static const String contact = "Liên lạc";
-  static const String schedule = "Thời khóa biểu";
-  static const String grades = "Kết quả học tập";
-  static const String attendance = "Điểm danh";
-  static const String tuition = "Học phí";
-  static const String events = "Sự kiện";
   static const String clubs = "Câu lạc bộ";
+  static const String schedule = "Thời khóa biểu";
+  static const String attendance = "Điểm danh";
+  static const String grades = "Kết quả học tập";
+  static const String events = "Sự kiện";
+  static const String contact = "Liên lạc";
+  static const String tuition = "Học phí";
+
+  // -- Forms
+  static const String formsTitle = "Đơn từ";
+  static const String createFormTitle = "Tạo đơn mới";
+  static const String formType = "Loại đơn";
+  static const String reason = "Lý do viết đơn";
+  static const String reasonHint = "Nhập lý do chi tiết";
+  static const String evidence = "Chứng cứ";
+  static const String selectFile = "Chọn tệp";
+  static const String submitCaps = "Gửi đơn";
+  static const String statusApproved = "Đã duyệt";
+  static const String statusPending = "Chờ duyệt";
+  static const String statusRejected = "Từ chối";
+  static const String datePrefix = "Ngày: ";
+  static const String reasonPrefix = "Lý do: ";
+  
+  // -- Form Types
+  static const String typeSickLeave = "Xin nghỉ học";
+  static const String typeLateArrival = "Xin đến muộn";
+  
+  static const String notifications = "Thông báo";
 }
