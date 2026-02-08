@@ -13,7 +13,7 @@ class EventsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Sự kiện", style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726), // Light Orange to match theme
+        backgroundColor: TColors.sunshade, // Light Orange to match theme
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),

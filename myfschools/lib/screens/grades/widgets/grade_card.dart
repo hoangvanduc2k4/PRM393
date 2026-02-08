@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/constants/text_strings.dart';
 
 class GradeCard extends StatelessWidget {
   const GradeCard({
@@ -24,7 +25,7 @@ class GradeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.orange.withOpacity(0.5)),
+        border: Border.all(color: TColors.sunshade.withOpacity(0.5)),
       ),
       child: Column(
         children: [
@@ -52,7 +53,7 @@ class GradeCard extends StatelessWidget {
                   border: Border.all(color: const Color(0xFFC8E6C9)),
                 ),
                 child: const Text(
-                  "• Đang nhập điểm",
+                  TTexts.scoreEntering,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -65,15 +66,15 @@ class GradeCard extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwItems),
           
           // Scores
-          _buildScoreRow("Đánh giá thường xuyên 1", "8.5"),
+          _buildScoreRow(TTexts.scoreComponent1, "8.5"),
           const SizedBox(height: 12),
-          _buildScoreRow("Đánh giá giữa kỳ", "9"),
+          _buildScoreRow(TTexts.scoreMidterm, "9"),
           const SizedBox(height: 12),
-          _buildScoreRow("Đánh giá cuối kỳ", "9"),
+          _buildScoreRow(TTexts.scoreFinal, "9"),
           const SizedBox(height: 16),
           const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
           const SizedBox(height: 16),
-          _buildScoreRow("Tổng kết", averageScore.toString(), isTotal: true),
+          _buildScoreRow(TTexts.scoreTotal, averageScore.toString(), isTotal: true),
         ],
       ),
     );
@@ -96,7 +97,7 @@ class GradeCard extends StatelessWidget {
           style: TextStyle(
             fontSize: isTotal ? 16 : 14,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFFFF5722), // Orange text for score
+            color: TColors.sunshade, // Orange text for score
           ),
         ),
       ],

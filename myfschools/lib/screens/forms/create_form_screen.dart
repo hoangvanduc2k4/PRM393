@@ -22,7 +22,7 @@ class _CreateFormScreenState extends State<CreateFormScreen> {
       appBar: AppBar(
         title: Text(TTexts.createFormTitle, style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726),
+        backgroundColor: TColors.sunshade,
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),
@@ -122,7 +122,7 @@ class _CreateFormScreenState extends State<CreateFormScreen> {
                     Navigator.pop(context);
                 },
                  style: ElevatedButton.styleFrom(
-                  backgroundColor: TColors.primary,
+                  backgroundColor: TColors.sunshade,
                   side: BorderSide.none,
                 ),
                 child: const Text(TTexts.submitCaps),

@@ -11,7 +11,7 @@ class EventCard extends StatelessWidget {
     required this.month,
     required this.time,
     required this.location,
-    this.color = TColors.primary,
+    this.color = TColors.sunshade,
   });
 
   final String eventName;

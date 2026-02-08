@@ -48,7 +48,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       appBar: AppBar(
         title: Text(TTexts.schedule, style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726),
+        backgroundColor: TColors.sunshade,
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),
@@ -84,7 +84,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         Text(
                           _getDayName(date.weekday),
                           style: Theme.of(context).textTheme.titleSmall!.apply(
-                                color: const Color(0xFF9E9E9E), // Grey text for Day
+                                color: Colors.black, // Grey text for Day
                                 fontWeightDelta: 1
                               ),
                         ),
@@ -94,13 +94,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                            height: 35,
                            alignment: Alignment.center,
                            decoration: BoxDecoration(
-                             color: isSelected ? const Color(0xFFFF5722) : Colors.transparent, // Orange circle
+                             color: isSelected ? TColors.sunshade : Colors.transparent, // Orange circle
                              shape: BoxShape.circle,
                            ),
                            child: Text(
                             "${date.day}",
                             style: Theme.of(context).textTheme.titleMedium!.apply(
-                                  color: isSelected ? Colors.white : const Color(0xFF0054A6), // White or Blue text
+                                  color: isSelected ? Colors.white : Colors.black, // White or Blue text
                                   fontWeightDelta: 2,
                                 ),
                           ),
@@ -138,14 +138,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                       room: "P.302",
                       time: "07:30 - 09:00",
                       teacher: "GV. Nguyễn Văn A",
-                      status: "Attended",
+                      status: TTexts.statusAttended,
                     ),
                     const ScheduleCard(
                       subjectName: "Kiến trúc phần mềm (SWT301)",
                       room: "P.405",
                       time: "09:15 - 11:45",
                       teacher: "GV. Trần Thị B",
-                      status: "Attended",
+                      status: TTexts.statusAttended,
                     ),
                   // Wednesday 29th Jan 2026 (Mock "Today")
                   ] else if (_selectedDate.year == 2026 && _selectedDate.month == 1 && _selectedDate.day == 29) ...[
@@ -154,7 +154,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                       room: "P.201",
                       time: "13:30 - 15:00",
                       teacher: "GV. Leanne",
-                      status: "Upcoming",
+                      status: TTexts.statusUpcoming,
                     ),
                   ] else ...[
                      Center(

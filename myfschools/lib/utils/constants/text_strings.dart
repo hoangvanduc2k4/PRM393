@@ -1,6 +1,6 @@
 class TTexts {
   // -- Login Screen Headings
-  static const String tLoginTitle = "Cổng thông tin trường học";
+  static const String tLoginTitle = "Cổng thông tin liên lạc";
   static const String tLoginSubTitle = "Kết nối thông minh. Gắn kết gia đình - nhà trường";
 
   // -- Form Fields
@@ -16,7 +16,7 @@ class TTexts {
 
   // -- Forgot Password & OTP
   static const String forgotPasswordTitle = "Quên mật khẩu";
-  static const String forgotPasswordSubTitle = "Nhập số điện thoại để nhận mã OTP";
+  static const String forgotPasswordSubTitle = "Nhập mã OTP đã được gửi đến số điện thoại";
   static const String sendOtp = "Gửi OTP";
   static const String enterOtpTitle = "Nhập OTP";
   static const String otpLabel = "Mã OTP";
@@ -31,10 +31,10 @@ class TTexts {
   static const String setNewPasswordTitle = "Tạo mật khẩu mới";
   static const String submit = "Xác nhận";
   static const String otpSubTitle = "Chúng tôi đã gửi mã đến số điện thoại của bạn";
-  static const String otpMessage = "Nhập mã OTP được gửi đến điện thoại";
+  static const String otpMessage = "Nhập mã OTP đã được gửi đến số điện thoại ";
   static const String changPasswordSubTitle = "Ít nhất 9 ký tự, bao gồm chữ hoa và chữ thường.";
   static const String continueText = "Tiếp tục";
-  static const String verificationTitle = "Xác minh";
+  static const String verificationTitle = "Xác minh OTP";
   static const String otpResendPrompt = "Nếu bạn chưa nhận được mã! ";
   static const String resend = "Gửi lại";
 
@@ -46,10 +46,10 @@ class TTexts {
 
   // -- Utilities
   static const String forms = "Đơn từ";
-  static const String clubs = "Câu lạc bộ";
-  static const String schedule = "Thời khóa biểu";
+  static const String clubs = "CLB";
+  static const String schedule = "Lịch học";
   static const String attendance = "Điểm danh";
-  static const String grades = "Kết quả học tập";
+  static const String grades = "Điểm số";
   static const String events = "Sự kiện";
   static const String contact = "Liên lạc";
   static const String tuition = "Học phí";
@@ -74,4 +74,23 @@ class TTexts {
   static const String typeLateArrival = "Xin đến muộn";
   
   static const String notifications = "Thông báo";
+
+  // -- Statuses & Labels
+  static const String statusPassed = "Đạt";
+  static const String statusFailed = "Chưa đạt";
+  static const String statusNotYet = "Chưa có";
+  static const String statusAttended = "Có mặt";
+  static const String statusAbsent = "Vắng mặt";
+  static const String statusUpcoming = "Sắp diễn ra";
+  
+  static const String scoreComponent1 = "Đánh giá thường xuyên 1";
+  static const String scoreMidterm = "Đánh giá giữa kỳ";
+  static const String scoreFinal = "Đánh giá cuối kỳ";
+  static const String scoreTotal = "Tổng kết";
+  static const String scoreEntering = "• Đang nhập điểm";
+
+  static const String labelRoom = "Phòng:";
+  static const String labelLecturer = "Giảng viên:";
+  static const String labelMember = "thành viên";
+  static const String labelJoined = "Đã tham gia";
 }

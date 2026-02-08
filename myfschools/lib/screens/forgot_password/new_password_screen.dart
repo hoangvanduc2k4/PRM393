@@ -13,7 +13,7 @@ class NewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(title: TTexts.forgotPasswordTitle),
+      appBar: const CommonAppBar(title: TTexts.setNewPasswordTitle),
 
       body: SingleChildScrollView(
         child: Padding(
@@ -21,13 +21,7 @@ class NewPasswordScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Text(
-              TTexts.setNewPasswordTitle,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            ),
+          
 
               const SizedBox(height: TSizes.spaceBtwSections),
 

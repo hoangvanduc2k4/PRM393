@@ -15,7 +15,7 @@ class FormsListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(TTexts.formsTitle, style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726),
+        backgroundColor: TColors.sunshade,
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),
@@ -52,7 +52,7 @@ class FormsListScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CreateFormScreen())),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: TColors.sunshade,
         child: const Icon(Iconsax.add, color: Colors.white),
       ),
     );

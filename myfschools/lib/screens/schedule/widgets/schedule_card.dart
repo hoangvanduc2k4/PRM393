@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/constants/text_strings.dart';
 import '../../../../common/styles/shadow_styles.dart';
 
 class ScheduleCard extends StatelessWidget {
@@ -26,19 +27,22 @@ class ScheduleCard extends StatelessWidget {
     Color statusColor;
     String statusText;
 
-    switch (status) {
-      case "Attended":
-        statusColor = const Color(0xFFD3EADD); // Light Green bg
-        statusText = "Attended"; 
-        break;
-      case "Absent":
-        statusColor = const Color(0xFFFAD7D7); // Light Red bg
-        statusText = "Absent"; 
-        break;
-      default:
-        statusColor = const Color(0xFFE0E0E0); // Light Grey bg
-        statusText = "Upcoming"; 
-    }
+switch (status) {
+  case TTexts.statusAttended:
+    statusColor = const Color(0xFFCFF5E7); // Mint pastel (dễ nhìn)
+    statusText = TTexts.statusAttended;
+    break;
+
+  case TTexts.statusAbsent:
+    statusColor = const Color(0xFFFFE2E0); // Soft red/pink pastel
+    statusText = TTexts.statusAbsent;
+    break;
+
+  default:
+    statusColor = const Color(0xFFE6E9F0); // Light grey-blue neutral
+    statusText = TTexts.statusUpcoming;
+}
+
 
     return Container(
       margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
@@ -67,7 +71,7 @@ class ScheduleCard extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0054A6), // Blue title
+                  color: Colors.black, // Blue title
                 ),
               ),
               Container(
@@ -98,7 +102,7 @@ class ScheduleCard extends StatelessWidget {
               const SizedBox(width: TSizes.spaceBtwSections),
               const Icon(Iconsax.location, size: 18, color: Colors.black87),
               const SizedBox(width: 8),
-               Text("Room: $room", style: const TextStyle(color: Colors.black54)),
+               Text("${TTexts.labelRoom} $room", style: const TextStyle(color: Colors.black54)),
             ],
           ),
           const SizedBox(height: TSizes.spaceBtwItems),
@@ -108,7 +112,7 @@ class ScheduleCard extends StatelessWidget {
             children: [
               const Icon(Iconsax.user, size: 18, color: Colors.black87),
               const SizedBox(width: 8),
-              Text("Lecturer: $teacher", style: const TextStyle(color: Colors.black54)),
+              Text("${TTexts.labelLecturer} $teacher", style: const TextStyle(color: Colors.black54)),
             ],
           ),
         ],

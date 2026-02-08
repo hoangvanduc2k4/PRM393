@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
 import 'widgets/notification_card.dart';
 
@@ -13,7 +14,7 @@ class NotificationsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(TTexts.notifications, style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726), // Light Orange
+        backgroundColor: TColors.sunshade, // Light Orange
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),

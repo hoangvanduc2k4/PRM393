@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(TSizes.md),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFA726), // Orange color from design
+                  color: TColors.sunshade, // Orange color from design
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [TShadowStyle.primaryShadow],
                 ),

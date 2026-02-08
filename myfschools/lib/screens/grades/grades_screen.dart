@@ -14,7 +14,7 @@ class GradesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(TTexts.grades, style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFFA726), // Orange
+        backgroundColor: TColors.sunshade, // Orange
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Iconsax.arrow_left),
@@ -77,7 +77,7 @@ class GradesScreen extends StatelessWidget {
             const Text(
               "Kết quả Học kỳ 1 - Năm học 2024-2025",
               style: TextStyle(
-                color: Color(0xFFFF5722), // Orange color
+                color: TColors.sunshade, // Orange color
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
@@ -86,22 +86,22 @@ class GradesScreen extends StatelessWidget {
 
             // -- Grade List
             const GradeCard(
-              subjectName: "Mobile Programming",
+              subjectName: "Lập trình di động",
               subjectCode: "PRM393",
               averageScore: 8.9,
-              status: "Passed",
+              status: TTexts.statusPassed,
             ),
              const GradeCard(
-              subjectName: "Software Project",
+              subjectName: "Đồ án phần mềm",
               subjectCode: "SWP391",
               averageScore: 0.0,
-              status: "NotYet",
+              status: TTexts.statusNotYet,
             ),
              const GradeCard(
-              subjectName: "Software Testing",
+              subjectName: "Kiểm thử phần mềm",
               subjectCode: "SWT301",
               averageScore: 8.5,
-              status: "Passed",
+              status: TTexts.statusPassed,
             ),
           ],
         ),
