@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants/sizes.dart';
+import '../../utils/constants/colors.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = Colors.orange,
+    this.backgroundColor = TColors.sunshade,
     this.textColor = Colors.white,
     this.width = double.infinity,
   });
@@ -26,7 +27,9 @@ class AppButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: textColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
           padding: const EdgeInsets.symmetric(vertical: 20),
         ),
         child: Text(text),

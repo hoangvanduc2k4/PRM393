@@ -1,114 +1,202 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'main.g.dart';
+void main() => runApp(
+  const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: TrangThoiKhoaBieu(),
+  ),
+);
 
-// ---------------------- MODEL ----------------------
-
-@JsonSerializable()
-class Person {
-  final String name;
-
-  @JsonKey(name: "addr1")
-  final String addressLine1;
-
-  @JsonKey(name: "city")
-  final String addressCity;
-
-  @JsonKey(name: "state")
-  final String addressState;
-
-  Person(this.name, this.addressLine1, this.addressCity, this.addressState);
-
-  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PersonToJson(this);
+class TrangThoiKhoaBieu extends StatefulWidget {
+  const TrangThoiKhoaBieu({super.key});
 
   @override
-  String toString() =>
-      "Person{name: $name, addressLine1: $addressLine1, addressCity: $addressCity, addressState: $addressState}";
+  State<TrangThoiKhoaBieu> createState() => _TrangThoiKhoaBieuState();
 }
 
-// ---------------------- APP ----------------------
+class _TrangThoiKhoaBieuState extends State<TrangThoiKhoaBieu> {
+  final List<String> namHocList = ["2025", "2026", "2027"];
+  final List<String> tuanList = ["02/03 - 08/03", "09/03 - 15/03"];
 
-void main() => runApp(MyApp());
+  String namChon = "2026";
+  String tuanChon = "02/03 - 08/03";
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: HomeWidget(),
+  final thuList = ["THỨ 2", "THỨ 3", "THỨ 4", "THỨ 5", "THỨ 6", "THỨ 7", "CN"];
+  final ngayList = [
+    "02/03",
+    "03/03",
+    "04/03",
+    "05/03",
+    "06/03",
+    "07/03",
+    "08/03",
+  ];
+
+  final gioTiet = [
+    "Tiết 1\n07:00-07:45",
+    "Tiết 2\n07:55-08:40",
+    "Tiết 3\n08:50-09:35",
+    "Tiết 4\n09:45-10:30",
+    "Tiết 5\n13:00-13:45",
+  ];
+
+  final Map<String, String> giaoVien = {
+    "Toán": "Thầy Bình",
+    "Văn": "Cô Lan",
+    "Anh": "Cô Mai",
+    "Lý": "Thầy Tú",
+    "Sử": "Cô Hoa",
+    "Địa": "Thầy Nam",
+    "Nhạc": "Cô Thúy",
+  };
+
+  final List<List<String>> monHoc = [
+    ["Chào cờ", "Toán", "Anh", "Lý", "Sử"],
+    ["Toán", "Toán", "Lý", "Địa", "Anh"],
+    ["Anh", "Toán", "Sử", "Lý", "Địa"],
+    ["Sử", "Anh", "Lý", "Toán", "-"],
+    ["Địa", "Lý", "Nhạc", "Anh", "Sinh hoạt"],
+    ["-", "-", "-", "-", "-"],
+    ["-", "-", "-", "-", "-"],
+  ];
+
+  // --------- Ô Header có ComboBox ---------
+  Widget oChonHeader(
+    String label,
+    Color labelColor,
+    String value,
+    List<String> items,
+    Function(String?) onChanged,
+  ) {
+    return Row(
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: labelColor,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey.shade400),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: value,
+              isDense: true,
+              style: const TextStyle(fontSize: 12, color: Colors.black),
+              items: items
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
+              onChanged: onChanged,
+            ),
+          ),
+        ),
+      ],
     );
   }
-}
 
-class HomeWidget extends StatefulWidget {
-  @override
-  _HomeWidgetState createState() => _HomeWidgetState();
-}
-
-class _HomeWidgetState extends State<HomeWidget> {
-  final _jsonTextController = TextEditingController();
-  Person? _person;
-  String? _error;
-
-  _HomeWidgetState() {
-    final String person =
-        "{\"name\":\"Tracy Brown\", \"addr1\":\"9625 Roberts Avenue\", \"city\":\"Birmingham\", \"state\":\"AL\"}";
-
-    _jsonTextController.text = person;
-  }
-
-  _convertJsonToPerson() {
-    setState(() {
-      try {
-        _error = null;
-
-        final String jsonText = _jsonTextController.text;
-        var decoded = json.decode(jsonText); // text -> map
-
-        _person = Person.fromJson(decoded);
-      } catch (e) {
-        _error = e.toString();
-        _person = null;
-      }
-    });
+  // --------- Ô text dữ liệu ---------
+  Widget cell(String text, {bool bold = false, Color? color, Color? bg}) {
+    return Container(
+      color: bg,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 12,
+          color: color ?? Colors.black,
+          fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    const primaryColor = Color(0xFF5C88C4);
+
     return Scaffold(
-      appBar: AppBar(title: Text("Deserialization")),
-      body: Padding(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Enter JSON",
-              ),
-              controller: _jsonTextController,
-              maxLines: 8,
-            ),
-            SizedBox(height: 10),
-            if (_error != null)
-              Text("Error:\n${_error!}", style: TextStyle(color: Colors.red)),
-            SizedBox(height: 10),
-            Text(
-              _person == null
-                  ? "Person is null"
-                  : "Converted Person:\n\n${_person!}",
-            ),
-          ],
+      appBar: AppBar(
+        title: const Text(
+          "THỜI KHÓA BIỂU",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
+        centerTitle: true,
+        backgroundColor: primaryColor,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _convertJsonToPerson,
-        child: Icon(Icons.refresh),
+      body: Table(
+        defaultColumnWidth: const FixedColumnWidth(110),
+        columnWidths: const {0: FixedColumnWidth(180)},
+        border: TableBorder.all(color: Colors.grey),
+        children: [
+          // --------- HÀNG 1: NĂM + THỨ ---------
+          TableRow(
+            decoration: const BoxDecoration(color: primaryColor),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: oChonHeader(
+                  "NĂM",
+                  Colors.red,
+                  namChon,
+                  namHocList,
+                  (v) => setState(() => namChon = v!),
+                ),
+              ),
+              ...thuList
+                  .map((e) => cell(e, bold: true, color: Colors.white))
+                  .toList(),
+            ],
+          ),
+
+          // --------- HÀNG 2: TUẦN + NGÀY ---------
+          TableRow(
+            decoration: const BoxDecoration(color: primaryColor),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: oChonHeader(
+                  "TUẦN",
+                  const Color(0xFF37474F),
+                  tuanChon,
+                  tuanList,
+                  (v) => setState(() => tuanChon = v!),
+                ),
+              ),
+              ...ngayList.map((e) => cell(e, color: Colors.white)).toList(),
+            ],
+          ),
+
+          // --------- CÁC HÀNG TIẾT HỌC ---------
+          ...List.generate(gioTiet.length, (row) {
+            return TableRow(
+              children: [
+                cell(gioTiet[row], bold: true),
+                ...List.generate(7, (col) {
+                  String mon = monHoc[col][row];
+                  bool special = mon == "Chào cờ" || mon == "Sinh hoạt";
+
+                  if (giaoVien.containsKey(mon)) {
+                    mon = "$mon\n(${giaoVien[mon]})";
+                  }
+
+                  return cell(
+                    mon,
+                    bold: special,
+                    color: special ? Colors.red : null,
+                  );
+                }),
+              ],
+            );
+          }),
+        ],
       ),
     );
   }

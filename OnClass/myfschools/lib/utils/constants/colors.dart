@@ -15,4 +15,5 @@ class TColors {
   static const Color textDark = Colors.white70;
   static const Color error = Colors.redAccent;
   static const Color success = Colors.green;
+  static const Color sunshade = Color(0xFFFF9E2C); // Sunshade Orange
 }
