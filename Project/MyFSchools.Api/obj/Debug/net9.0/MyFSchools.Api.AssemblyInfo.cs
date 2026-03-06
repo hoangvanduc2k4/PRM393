@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyFSchools.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ca8c1076dd4f3d655be5ccb38219ffead2a0823")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c76ba21e2bf035d716cd0da0adfafa4bf070a8a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyFSchools.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyFSchools.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

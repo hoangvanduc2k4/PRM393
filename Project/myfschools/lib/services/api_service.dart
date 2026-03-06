@@ -117,6 +117,41 @@ class ApiService {
     _checkStatus(res);
   }
 
+  // ─── Authentication ─────────────────────────────────────────────
+  static Future<void> login(String phone, String password) async {
+    final res = await post('/api/auth/login', {
+      'phone': phone,
+      'password': password,
+    });
+
+    await saveSession(
+      token: res['token'],
+      userId: res['user']['id'],
+      phone: res['user']['phone'],
+      activeChildId: res['user']['activeChildId'],
+    );
+  }
+
+  static Future<void> forgotPassword(String phone) async {
+    await post('/api/auth/forgot-password', {'phone': phone});
+  }
+
+  static Future<void> verifyOtp(String phone, String otp) async {
+    await post('/api/auth/verify-otp', {'phone': phone, 'otp': otp});
+  }
+
+  static Future<void> resetPassword(
+    String phone,
+    String otp,
+    String newPassword,
+  ) async {
+    await post('/api/auth/reset-password', {
+      'phone': phone,
+      'otp': otp,
+      'newPassword': newPassword,
+    });
+  }
+
   static void _checkStatus(http.Response res) {
     if (res.statusCode >= 400) {
       String msg = 'Lỗi ${res.statusCode}';
