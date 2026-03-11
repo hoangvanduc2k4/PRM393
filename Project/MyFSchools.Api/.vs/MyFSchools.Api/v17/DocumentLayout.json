@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|solutionrelative:data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|solutionrelative:data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BCFFE227-A738-48F5-02AF-CE43DE9D63D6}|MyFSchools.Api.csproj|d:\\semester_8_sp26\\prm393\\project\\myfschools.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,19 +47,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Data\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "Data\\DbInitializer.cs",
+              "ToolTip": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Data\\DbInitializer.cs",
+              "RelativeToolTip": "Data\\DbInitializer.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAQwC8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T19:02:24.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
+              "ToolTip": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvy8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T18:58:03.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
               "ToolTip": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Properties\\launchSettings.json",
               "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswBYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-06T10:23:46.077Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -67,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -79,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -88,18 +118,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T09:13:14.541Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DbInitializer.cs",
-              "DocumentMoniker": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Data\\DbInitializer.cs",
-              "RelativeDocumentMoniker": "Data\\DbInitializer.cs",
-              "ToolTip": "D:\\Semester_8_SP26\\PRM393\\Project\\MyFSchools.Api\\Data\\DbInitializer.cs",
-              "RelativeToolTip": "Data\\DbInitializer.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAAAKsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T09:13:12.162Z"
             }
           ]
         }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyFSchools.Api.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace MyFSchools.Api.Data
 {
@@ -17,153 +18,178 @@ namespace MyFSchools.Api.Data
                 return; // DB has been seeded
             }
 
-            var faker = new Faker(); // Not used directly, but good for shared settings if needed
-            
-            // 1. Seed Clubs
-            var clubCategories = new[] { "Học thuật", "Nghệ thuật", "Thể thao", "Truyền thông", "Khoa học" };
-            var clubFaker = new Faker<Club>()
-                .RuleFor(c => c.Id, f => f.Random.Guid().ToString())
-                .RuleFor(c => c.Name, f => f.Commerce.ProductName() + " Club")
-                .RuleFor(c => c.Category, f => f.PickRandom(clubCategories))
-                .RuleFor(c => c.MemberCount, f => 0);
+            // ── Fixed IDs ──────────────────────────────────────────────────
+            var u1 = "u-001"; var u2 = "u-002"; var u3 = "u-003"; var u4 = "u-004";
+            var c1 = "c-001"; var c2 = "c-002"; var c3 = "c-003";
+            var c4 = "c-004"; var c5 = "c-005"; var c6 = "c-006";
+            var cl1 = "cl-1"; var cl2 = "cl-2"; var cl3 = "cl-3"; var cl4 = "cl-4"; var cl5 = "cl-5";
 
-            var clubs = clubFaker.Generate(10);
-            context.Clubs.AddRange(clubs);
+            // Hash "Password123" using BCrypt dynamically
+            var defaultPasswordHash = BCrypt.Net.BCrypt.HashPassword("Password123");
 
-            // 2. Seed Users
-            var userFaker = new Faker<User>()
-                .RuleFor(u => u.Id, f => f.Random.Guid().ToString())
-                .RuleFor(u => u.Email, (f, u) => f.Internet.Email())
-                .RuleFor(u => u.Password, f => "Password123")
-                .RuleFor(u => u.Phone, f => f.Phone.PhoneNumber("0#########"));
-
-            var users = userFaker.Generate(10);
+            // ── Users ──────────────────────────────────────────────────────
+            var users = new[]
+            {
+                new User { Id = u1, Email = "nguyenvana@myfschools.com", Password = defaultPasswordHash, Phone = "0912345678" },
+                new User { Id = u2, Email = "tranthib@myfschools.com",   Password = defaultPasswordHash, Phone = "0923456789" },
+                new User { Id = u3, Email = "lehongc@myfschools.com",    Password = defaultPasswordHash, Phone = "0934567890" },
+                new User { Id = u4, Email = "phamvand@myfschools.com",   Password = defaultPasswordHash, Phone = "0945678901" }
+            };
             context.Users.AddRange(users);
 
-            // 3. Seed Children
-            var classes = new[] { "3A1", "4B2", "5C3", "1A2", "2B1" };
-            var childFaker = new Faker<Child>()
-                .RuleFor(c => c.Id, f => f.Random.Guid().ToString())
-                .RuleFor(c => c.FullName, f => f.Name.FullName())
-                .RuleFor(c => c.ClassName, f => f.PickRandom(classes))
-                .RuleFor(c => c.AvatarUrl, f => f.Internet.Avatar());
+            // ── Roles ──────────────────────────────────────────────────────
+            var roleTeacher = "r-teacher";
+            var roleParent = "r-parent";
 
-            var allChildren = new List<Child>();
-            foreach (var user in users)
+            var roles = new[]
             {
-                var children = childFaker.Generate(faker.Random.Number(1, 3));
-                foreach (var child in children)
-                {
-                    child.UserId = user.Id;
-                    allChildren.Add(child);
-                }
-                user.ActiveChildId = children.First().Id;
-            }
-            context.Children.AddRange(allChildren);
+                new Role { Id = roleTeacher, Name = "Teacher" },
+                new Role { Id = roleParent, Name = "Parent" }
+            };
+            context.Roles.AddRange(roles);
 
-            // 4. Seed ChildClubs
-            var childClubFaker = new Faker<ChildClub>();
-            foreach (var child in allChildren)
+            // ── UserRoles ──────────────────────────────────────────────────
+            var userRoles = new[]
             {
-                var joinedClubs = faker.PickRandom(clubs, faker.Random.Number(1, 3));
-                foreach (var club in joinedClubs)
-                {
-                    context.ChildClubs.Add(new ChildClub { ChildId = child.Id, ClubId = club.Id });
-                    club.MemberCount++;
-                }
-            }
+                new UserRole { UserId = u1, RoleId = roleParent },
+                new UserRole { UserId = u2, RoleId = roleParent },
+                new UserRole { UserId = u2, RoleId = roleTeacher },
+                new UserRole { UserId = u3, RoleId = roleParent },
+                new UserRole { UserId = u4, RoleId = roleTeacher }
+            };
+            context.UserRoles.AddRange(userRoles);
 
-            // 5. Seed Events
-            var eventFaker = new Faker<Event>()
-                .RuleFor(e => e.Id, f => f.Random.Guid().ToString())
-                .RuleFor(e => e.EventName, f => f.Company.CatchPhrase())
-                .RuleFor(e => e.EventDate, f => f.Date.Future())
-                .RuleFor(e => e.Time, f => "08:00 - 11:00")
-                .RuleFor(e => e.Location, f => f.Address.StreetAddress())
-                .RuleFor(e => e.Color, f => f.PickRandom(new[] { "blue", "red", "green", "orange", "purple" }));
-
-            context.Events.AddRange(eventFaker.Generate(20));
-
-            // 6. Seed Forms
-            var formFaker = new Faker<Form>()
-                .RuleFor(f => f.Id, f => f.Random.Guid().ToString())
-                .RuleFor(f => f.Title, f => f.PickRandom("Đơn xin nghỉ học", "Đơn xin ngoại khóa", "Đơn chuyển lớp"))
-                .RuleFor(f => f.Type, (f, fo) => fo.Title.Replace("Đơn ", ""))
-                .RuleFor(f => f.Date, f => f.Date.Recent().ToString("dd/MM/yyyy"))
-                .RuleFor(f => f.Reason, f => f.Lorem.Sentence())
-                .RuleFor(f => f.Status, f => f.PickRandom("Chờ duyệt", "Đã duyệt", "Từ chối"));
-
-            foreach (var child in allChildren)
+            // ── Children ───────────────────────────────────────────────────
+            var children = new[]
             {
-                var forms = formFaker.Generate(5);
-                foreach (var form in forms)
-                {
-                    form.UserId = child.UserId;
-                    form.ChildId = child.Id;
-                    context.Forms.Add(form);
-                }
-            }
+                new Child { Id = c1, UserId = u1, FullName = "Nguyễn Minh An",   ClassName = "3A1", AvatarUrl = "https://i.pravatar.cc/150?u=c1" },
+                new Child { Id = c2, UserId = u1, FullName = "Nguyễn Thu Hà",    ClassName = "5B2", AvatarUrl = "https://i.pravatar.cc/150?u=c2" },
+                new Child { Id = c3, UserId = u2, FullName = "Trần Quốc Bảo",    ClassName = "4C3", AvatarUrl = "https://i.pravatar.cc/150?u=c3" },
+                new Child { Id = c4, UserId = u2, FullName = "Trần Khánh Linh",  ClassName = "2A1", AvatarUrl = "https://i.pravatar.cc/150?u=c4" },
+                new Child { Id = c5, UserId = u3, FullName = "Lê Hoàng Nam",     ClassName = "1B1", AvatarUrl = "https://i.pravatar.cc/150?u=c5" },
+                new Child { Id = c6, UserId = u3, FullName = "Lê Thanh Phương",  ClassName = "3A1", AvatarUrl = "https://i.pravatar.cc/150?u=c6" }
+            };
+            context.Children.AddRange(children);
 
-            // 7. Seed Grades
+            // ── Clubs ──────────────────────────────────────────────────────
+            var clubs = new[]
+            {
+                new Club { Id = cl1, Name = "Câu lạc bộ Toán học",   Category = "Học thuật",  MemberCount = 3 },
+                new Club { Id = cl2, Name = "Câu lạc bộ Bóng đá",    Category = "Thể thao",   MemberCount = 3 },
+                new Club { Id = cl3, Name = "Câu lạc bộ Mỹ thuật",   Category = "Nghệ thuật", MemberCount = 2 },
+                new Club { Id = cl4, Name = "Câu lạc bộ Khoa học",   Category = "Khoa học",   MemberCount = 2 },
+                new Club { Id = cl5, Name = "Câu lạc bộ Âm nhạc",    Category = "Nghệ thuật", MemberCount = 2 }
+            };
+            context.Clubs.AddRange(clubs);
+
+            // ── ChildClubs ──────────────────────────────────────────────────
+            var childClubs = new[]
+            {
+                new ChildClub { ChildId = c1, ClubId = cl1 },
+                new ChildClub { ChildId = c1, ClubId = cl2 },
+                new ChildClub { ChildId = c2, ClubId = cl3 },
+                new ChildClub { ChildId = c3, ClubId = cl1 },
+                new ChildClub { ChildId = c3, ClubId = cl4 },
+                new ChildClub { ChildId = c4, ClubId = cl2 },
+                new ChildClub { ChildId = c5, ClubId = cl5 },
+                new ChildClub { ChildId = c5, ClubId = cl3 },
+                new ChildClub { ChildId = c6, ClubId = cl4 },
+                new ChildClub { ChildId = c6, ClubId = cl2 }
+            };
+            context.ChildClubs.AddRange(childClubs);
+
+            // ── Events ─────────────────────────────────────────────────────
+            var baseDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var events = new[]
+            {
+                new Event { Id = "ev-1", EventName = "Ngày hội khoa học",        EventDate = baseDate.AddDays(10), Time = "08:00 - 11:00", Location = "Sân trường",         Color = "blue",   CreatedAt = baseDate },
+                new Event { Id = "ev-2", EventName = "Hội trại cuối năm",        EventDate = baseDate.AddDays(20), Time = "07:00 - 17:00", Location = "Công viên Gia Định", Color = "green",  CreatedAt = baseDate },
+                new Event { Id = "ev-3", EventName = "Văn nghệ chào xuân",       EventDate = baseDate.AddDays(30), Time = "14:00 - 16:30", Location = "Hội trường A",       Color = "orange", CreatedAt = baseDate },
+                new Event { Id = "ev-4", EventName = "Giải thể thao học sinh",   EventDate = baseDate.AddDays(40), Time = "07:30 - 11:30", Location = "Sân vận động",       Color = "red",    CreatedAt = baseDate },
+                new Event { Id = "ev-5", EventName = "Triển lãm mỹ thuật",       EventDate = baseDate.AddDays(50), Time = "09:00 - 12:00", Location = "Phòng trưng bày",    Color = "purple", CreatedAt = baseDate }
+            };
+            context.Events.AddRange(events);
+
+            // ── Notifications ──────────────────────────────────────────────
+            var notifDate = new DateTime(2025, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+            var notifications = new[]
+            {
+                new Notification { Id = "n-1", UserId = u1, Title = "Thông báo học phí HK2",      Message = "Học phí học kỳ 2 đã đến hạn nộp.", Type = "Hệ thống", IsRead = false, CreatedAt = notifDate },
+                new Notification { Id = "n-2", UserId = u1, Title = "Kết quả học tập tháng 1",    Message = "Kết quả học tập tháng 1 đã được cập nhật.", Type = "Học tập", IsRead = true,  CreatedAt = notifDate.AddDays(1) },
+                new Notification { Id = "n-3", UserId = u2, Title = "Sự kiện sắp diễn ra",        Message = "Hội trại cuối năm sẽ diễn ra vào ngày 21/1.", Type = "Sự kiện", IsRead = false, CreatedAt = notifDate.AddDays(2) },
+                new Notification { Id = "n-4", UserId = u2, Title = "Lịch kiểm tra giữa kỳ",      Message = "Lịch kiểm tra giữa kỳ đã được đăng tải.", Type = "Học tập", IsRead = true,  CreatedAt = notifDate.AddDays(3) },
+                new Notification { Id = "n-5", UserId = u3, Title = "Đơn xin nghỉ đã được duyệt", Message = "Đơn xin nghỉ của con bạn đã được phê duyệt.", Type = "Hệ thống", IsRead = false, CreatedAt = notifDate.AddDays(4) }
+            };
+            context.Notifications.AddRange(notifications);
+
+            // ── Forms ──────────────────────────────────────────────────────
+            var formDate = new DateTime(2025, 1, 5, 0, 0, 0, DateTimeKind.Utc);
+            var forms = new[]
+            {
+                new Form { Id = "f-1", UserId = u1, ChildId = c1, Title = "Đơn xin nghỉ học",  Type = "xin nghỉ học",  Date = "05/01/2025", Reason = "Gia đình có việc đột xuất",           Status = "Đã duyệt",  CreatedAt = formDate },
+                new Form { Id = "f-2", UserId = u1, ChildId = c2, Title = "Đơn xin ngoại khóa", Type = "xin ngoại khóa", Date = "10/01/2025", Reason = "Tham gia hội trại trường",              Status = "Chờ duyệt", CreatedAt = formDate.AddDays(5) },
+                new Form { Id = "f-3", UserId = u2, ChildId = c3, Title = "Đơn xin chuyển lớp", Type = "xin chuyển lớp", Date = "12/01/2025", Reason = "Nhà chuyển chỗ, đi lại khó khăn",      Status = "Từ chối",   CreatedAt = formDate.AddDays(7) },
+                new Form { Id = "f-4", UserId = u2, ChildId = c4, Title = "Đơn xin nghỉ học",  Type = "xin nghỉ học",  Date = "15/01/2025", Reason = "Con bị ốm cần nghỉ ngơi tại nhà",      Status = "Đã duyệt",  CreatedAt = formDate.AddDays(10) },
+                new Form { Id = "f-5", UserId = u3, ChildId = c5, Title = "Đơn xin nghỉ học",  Type = "xin nghỉ học",  Date = "18/01/2025", Reason = "Con tham dự đám cưới của người thân",   Status = "Chờ duyệt", CreatedAt = formDate.AddDays(13) }
+            };
+            context.Forms.AddRange(forms);
+
+            // ── Grades ─────────────────────────────────────────────────────
+            var term = "HK1";
+            var year = "2024-2025";
             var subjects = new[] { "Toán học", "Ngữ văn", "Tiếng Anh", "Khoa học", "Lịch sử", "Địa lý" };
-            var gradeFaker = new Faker<Grade>()
-                .RuleFor(g => g.Id, f => f.Random.Guid().ToString())
-                .RuleFor(g => g.Subject, f => f.PickRandom(subjects))
-                .RuleFor(g => g.Term, f => "Học kỳ 1 - 2024-2025")
-                .RuleFor(g => g.Average, f => (decimal)f.Random.Double(5.0, 10.0))
-                .RuleFor(g => g.Status, f => "Passed");
-
-            foreach (var child in allChildren)
+            var scores    = new decimal[] { 9.5m, 8.0m, 9.0m, 7.5m, 8.5m, 9.2m };
+            var gradeIdx = 0;
+            var gradesToSeed = new List<Grade>();
+            foreach (var child in new[] { c1, c2, c3, c4, c5, c6 })
             {
-                var grades = gradeFaker.Generate(6);
-                foreach (var grade in grades)
+                for (int s = 0; s < subjects.Length; s++)
                 {
-                    grade.ChildId = child.Id;
-                    context.Grades.Add(grade);
+                    gradeIdx++;
+                    gradesToSeed.Add(new Grade
+                    {
+                        Id      = $"gr-{gradeIdx}",
+                        ChildId = child,
+                        Subject = subjects[s],
+                        Term    = term,
+                        Year    = year,
+                        Quiz15Min = scores[s] - (gradeIdx % 3) * 0.3m,
+                        OralTest = scores[s] - (gradeIdx % 3) * 0.2m,
+                        Test45Min = scores[s] - (gradeIdx % 3) * 0.1m,
+                        FinalExam = scores[s]
+                    });
                 }
             }
+            context.Grades.AddRange(gradesToSeed);
 
-            // 8. Seed Notifications
-            var notificationFaker = new Faker<Notification>()
-                .RuleFor(n => n.Id, f => f.Random.Guid().ToString())
-                .RuleFor(n => n.Title, f => f.Lorem.Sentence(3))
-                .RuleFor(n => n.Message, f => f.Lorem.Paragraph())
-                .RuleFor(n => n.Type, f => f.PickRandom("Hệ thống", "Học tập", "Sự kiện"))
-                .RuleFor(n => n.IsRead, f => f.Random.Bool())
-                .RuleFor(n => n.CreatedAt, f => f.Date.Recent());
-
-            foreach (var user in users)
-            {
-                var notifications = notificationFaker.Generate(10);
-                foreach (var note in notifications)
-                {
-                    note.UserId = user.Id;
-                    context.Notifications.Add(note);
-                }
-            }
-
-            // 9. Seed Schedules
-            var days = new[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6" };
-            foreach (var className in classes)
+            // ── Schedules ──────────────────────────────────────────────────
+            var days    = new[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6" };
+            var scheduleClasses = new[] { "3A1", "5B2", "4C3", "2A1", "1B1" };
+            var subjectPool = new[] { "Toán học", "Ngữ văn", "Tiếng Anh", "Khoa học", "Lịch sử", "Địa lý", "Đạo đức", "Thể dục" };
+            var schIdx = 0;
+            var schedulesToSeed = new List<Schedule>();
+            foreach (var cls in scheduleClasses)
             {
                 foreach (var day in days)
                 {
                     for (int slot = 1; slot <= 4; slot++)
                     {
-                        context.Schedules.Add(new Schedule
+                        schIdx++;
+                        schedulesToSeed.Add(new Schedule
                         {
-                            Id = Guid.NewGuid().ToString(),
-                            ClassName = className,
+                            Id        = $"sch-{schIdx}",
+                            ClassName = cls,
                             DayOfWeek = day,
-                            Slot = slot,
-                            Subject = faker.PickRandom(subjects),
-                            Teacher = faker.Name.FullName(),
-                            Room = "Room " + faker.Random.Number(101, 505),
-                            Term = "2024-2025"
+                            Slot      = slot,
+                            Subject   = subjectPool[(schIdx - 1) % subjectPool.Length],
+                            Teacher   = schIdx % 2 == 0 ? "tranthib@myfschools.com" : "phamvand@myfschools.com",
+                            Room      = $"P.{200 + (schIdx % 20)}",
+                            Term      = "2024-2025"
                         });
                     }
                 }
             }
+            context.Schedules.AddRange(schedulesToSeed);
 
             context.SaveChanges();
         }

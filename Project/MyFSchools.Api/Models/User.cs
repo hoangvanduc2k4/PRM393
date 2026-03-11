@@ -30,5 +30,7 @@ namespace MyFSchools.Api.Models
         public virtual ICollection<Form> Forms { get; set; } = new List<Form>();
         [JsonIgnore]
         public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+
+        public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

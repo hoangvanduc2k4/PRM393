@@ -52,8 +52,10 @@ namespace MyFSchools.Api.Repositories
 
             existing.Subject = entity.Subject;
             existing.Term = entity.Term;
-            existing.Average = entity.Average;
-            existing.Status = entity.Status;
+            existing.Quiz15Min = entity.Quiz15Min;
+            existing.OralTest = entity.OralTest;
+            existing.Test45Min = entity.Test45Min;
+            existing.FinalExam = entity.FinalExam;
 
             await _context.SaveChangesAsync();
             return existing;

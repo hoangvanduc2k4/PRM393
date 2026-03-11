@@ -144,16 +144,14 @@ class _GradesScreenState extends State<GradesScreen> {
                     itemCount: _gradeController.filteredGrades.length,
                     itemBuilder: (context, index) {
                       final grade = _gradeController.filteredGrades[index];
-                      // Ánh xạ trạng thái hiển thị
-                      String textStatus = TTexts.statusPassed;
-                      if (grade.status.toLowerCase() == "failed") textStatus = TTexts.statusFailed;
-                      if (grade.status.toLowerCase() == "not yet") textStatus = TTexts.statusNotYet;
 
                       return GradeCard(
                         subjectName: grade.subject,
                         subjectCode: "...", // DB hiện chưa có mã môn
-                        averageScore: grade.average,
-                        status: textStatus,
+                        quiz15Min: grade.quiz15Min,
+                        oralTest: grade.oralTest,
+                        test45Min: grade.test45Min,
+                        finalExam: grade.finalExam,
                       );
                     },
                   );

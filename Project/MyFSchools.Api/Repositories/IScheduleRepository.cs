@@ -7,5 +7,6 @@ namespace MyFSchools.Api.Repositories
         Task<IEnumerable<Schedule>> GetByClassNameAsync(string className);
         Task<IEnumerable<Schedule>> GetByClassNameAndDayAsync(string className, string dayOfWeek);
         Task<IEnumerable<Schedule>> GetByTermAsync(string term);
+        Task<IEnumerable<Schedule>> GetByTeacherAsync(string teacher);
     }
 }

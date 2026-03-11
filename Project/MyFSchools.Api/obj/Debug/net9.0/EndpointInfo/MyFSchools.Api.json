@@ -130,47 +130,6 @@
         }
       }
     },
-    "/api/Children": {
-      "get": {
-        "tags": [
-          "Children"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Children"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Children/{id}": {
       "get": {
         "tags": [
@@ -179,87 +138,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Children"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Child"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Children"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Children/by-user/{userId}": {
-      "get": {
-        "tags": [
-          "Children"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {
@@ -300,116 +178,6 @@
       "get": {
         "tags": [
           "Clubs"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Clubs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Clubs/{id}": {
-      "get": {
-        "tags": [
-          "Clubs"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Clubs"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Club"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Clubs"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -510,280 +278,6 @@
             "description": "OK"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Events"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Events/{id}": {
-      "get": {
-        "tags": [
-          "Events"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Events"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Event"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Events"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Events/upcoming": {
-      "get": {
-        "tags": [
-          "Events"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Events/by-range": {
-      "get": {
-        "tags": [
-          "Events"
-        ],
-        "parameters": [
-          {
-            "name": "from",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "to",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Forms": {
-      "get": {
-        "tags": [
-          "Forms"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Forms"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Forms/{id}": {
-      "get": {
-        "tags": [
-          "Forms"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Forms"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Form"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Forms"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
     "/api/Forms/by-user/{userId}": {
@@ -830,162 +324,30 @@
         }
       }
     },
-    "/api/Forms/{id}/status": {
-      "patch": {
+    "/api/Forms": {
+      "post": {
         "tags": [
           "Forms"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStatusRequest"
+                "$ref": "#/components/schemas/Form"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStatusRequest"
+                "$ref": "#/components/schemas/Form"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateStatusRequest"
+                "$ref": "#/components/schemas/Form"
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Grades": {
-      "get": {
-        "tags": [
-          "Grades"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Grades"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Grades/{id}": {
-      "get": {
-        "tags": [
-          "Grades"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Grades"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Grade"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Grades"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1015,180 +377,7 @@
         }
       }
     },
-    "/api/Grades/by-child/{childId}/term": {
-      "get": {
-        "tags": [
-          "Grades"
-        ],
-        "parameters": [
-          {
-            "name": "childId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "term",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Notifications": {
-      "get": {
-        "tags": [
-          "Notifications"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Notifications"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Notifications/{id}": {
-      "get": {
-        "tags": [
-          "Notifications"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Notifications"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notification"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Notifications"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Notifications/by-user/{userId}": {
-      "get": {
-        "tags": [
-          "Notifications"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Notifications/unread-count/{userId}": {
       "get": {
         "tags": [
           "Notifications"
@@ -1232,128 +421,6 @@
         }
       }
     },
-    "/api/Schedules": {
-      "get": {
-        "tags": [
-          "Schedules"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Schedules"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Schedules/{id}": {
-      "get": {
-        "tags": [
-          "Schedules"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Schedules"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schedule"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Schedules"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Schedules/by-class/{className}": {
       "get": {
         "tags": [
@@ -1376,165 +443,14 @@
         }
       }
     },
-    "/api/Schedules/by-class/{className}/day/{dayOfWeek}": {
+    "/api/Schedules/teacher/{teacher}": {
       "get": {
         "tags": [
           "Schedules"
         ],
         "parameters": [
           {
-            "name": "className",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "dayOfWeek",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Schedules/by-term": {
-      "get": {
-        "tags": [
-          "Schedules"
-        ],
-        "parameters": [
-          {
-            "name": "term",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Users": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Users/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "id",
+            "name": "teacher",
             "in": "path",
             "required": true,
             "schema": {
@@ -1564,58 +480,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Users/by-email": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Users/login": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1657,6 +521,28 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users/{id}": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1755,102 +641,6 @@
         },
         "additionalProperties": false
       },
-      "ChildClub": {
-        "type": "object",
-        "properties": {
-          "childId": {
-            "type": "string",
-            "nullable": true
-          },
-          "child": {
-            "$ref": "#/components/schemas/Child"
-          },
-          "clubId": {
-            "type": "string",
-            "nullable": true
-          },
-          "club": {
-            "$ref": "#/components/schemas/Club"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Club": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string"
-          },
-          "category": {
-            "maxLength": 100,
-            "type": "string",
-            "nullable": true
-          },
-          "memberCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "childClubs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChildClub"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Event": {
-        "required": [
-          "eventDate",
-          "eventName"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "eventName": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string"
-          },
-          "eventDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "time": {
-            "maxLength": 50,
-            "type": "string",
-            "nullable": true
-          },
-          "location": {
-            "maxLength": 256,
-            "type": "string",
-            "nullable": true
-          },
-          "color": {
-            "maxLength": 20,
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
       "Form": {
         "required": [
           "childId",
@@ -1908,10 +698,9 @@
         },
         "additionalProperties": false
       },
-      "Grade": {
+      "Role": {
         "required": [
-          "childId",
-          "subject"
+          "name"
         ],
         "type": "object",
         "properties": {
@@ -1919,136 +708,16 @@
             "type": "string",
             "nullable": true
           },
-          "childId": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "child": {
-            "$ref": "#/components/schemas/Child"
-          },
-          "subject": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string"
-          },
-          "term": {
-            "maxLength": 100,
-            "type": "string",
-            "nullable": true
-          },
-          "average": {
-            "type": "number",
-            "format": "double"
-          },
-          "status": {
-            "maxLength": 50,
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoginRequest": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Notification": {
-        "required": [
-          "title",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "userId": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          },
-          "title": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "type": {
-            "maxLength": 100,
-            "type": "string",
-            "nullable": true
-          },
-          "isRead": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Schedule": {
-        "required": [
-          "className",
-          "dayOfWeek",
-          "slot",
-          "subject"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "className": {
+          "name": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
           },
-          "dayOfWeek": {
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string"
-          },
-          "slot": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "subject": {
-            "maxLength": 256,
-            "minLength": 1,
-            "type": "string"
-          },
-          "teacher": {
-            "maxLength": 256,
-            "type": "string",
-            "nullable": true
-          },
-          "room": {
-            "maxLength": 50,
-            "type": "string",
-            "nullable": true
-          },
-          "term": {
-            "maxLength": 100,
-            "type": "string",
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
             "nullable": true
           }
         },
@@ -2058,16 +727,6 @@
         "type": "object",
         "properties": {
           "activeChildId": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateStatusRequest": {
-        "type": "object",
-        "properties": {
-          "status": {
             "type": "string",
             "nullable": true
           }
@@ -2109,6 +768,37 @@
               "$ref": "#/components/schemas/Child"
             },
             "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "required": [
+          "roleId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "roleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
           }
         },
         "additionalProperties": false

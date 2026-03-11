@@ -54,10 +54,9 @@ class GradeController extends ChangeNotifier {
   }
 
   void applyFilter() {
-    String targetYearSuffix = _selectedYear.split('-').last;
-    String filterKeyword = "$_selectedTerm - $targetYearSuffix";
+    String dbTerm = _selectedTerm == "Học kỳ 1" ? "HK1" : "HK2";
     _filteredGrades = _allGrades
-        .where((g) => g.term.contains(filterKeyword))
+        .where((g) => g.term == dbTerm && g.year == _selectedYear)
         .toList();
     notifyListeners();
   }

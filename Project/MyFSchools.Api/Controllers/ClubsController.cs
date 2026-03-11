@@ -24,14 +24,7 @@ namespace MyFSchools.Api.Controllers
             return Ok(await _repo.GetAllAsync());
         }
 
-        // GET: api/clubs/{id}
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(string id)
-        {
-            var club = await _repo.GetByIdAsync(id);
-            if (club == null) return NotFound();
-            return Ok(club);
-        }
+
 
         // GET: api/clubs/by-child/{childId}
         [HttpGet("by-child/{childId}")]
@@ -58,32 +51,6 @@ namespace MyFSchools.Api.Controllers
             return Ok(new { message = "Rời câu lạc bộ thành công" });
         }
 
-        // POST: api/clubs
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Club club)
-        {
-            if (string.IsNullOrEmpty(club.Id))
-                club.Id = Guid.NewGuid().ToString();
-            var created = await _repo.CreateAsync(club);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
-        }
 
-        // PUT: api/clubs/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] Club club)
-        {
-            var updated = await _repo.UpdateAsync(id, club);
-            if (updated == null) return NotFound();
-            return Ok(updated);
-        }
-
-        // DELETE: api/clubs/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            var result = await _repo.DeleteAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
-        }
     }
 }

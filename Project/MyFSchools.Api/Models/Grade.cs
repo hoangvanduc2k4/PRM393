@@ -17,13 +17,24 @@ namespace MyFSchools.Api.Models
         [MaxLength(256)]
         public string Subject { get; set; } = string.Empty;
 
-        [MaxLength(100)]
-        public string? Term { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string Term { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(20)]
+        public string Year { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(5, 2)")]
-        public decimal Average { get; set; }
+        public decimal? Quiz15Min { get; set; }
 
-        [MaxLength(50)]
-        public string? Status { get; set; }
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal? OralTest { get; set; }
+
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal? Test45Min { get; set; }
+
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal? FinalExam { get; set; }
     }
 }

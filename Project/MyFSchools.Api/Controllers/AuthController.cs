@@ -28,7 +28,7 @@ namespace MyFSchools.Api.Controllers
 
             var user = await _userRepo.GetByPhoneAsync(request.Phone);
 
-            if (user == null || user.Password != request.Password)
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
                 return Unauthorized(new { message = "Số điện thoại hoặc mật khẩu không đúng" });
 
             var token = _jwtService.GenerateToken(user);
@@ -98,7 +98,7 @@ namespace MyFSchools.Api.Controllers
                 if (user == null)
                     return NotFound(new { message = "Không tìm thấy người dùng" });
 
-                user.Password = request.NewPassword;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
                 await _userRepo.UpdateAsync(user.Id, user);
 
                 _otpStore.TryRemove(request.Phone, out _);

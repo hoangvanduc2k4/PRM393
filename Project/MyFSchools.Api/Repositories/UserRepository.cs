@@ -38,6 +38,8 @@ namespace MyFSchools.Api.Repositories
             return await _context.Users
                 .Include(u => u.Children)
                 .Include(u => u.ActiveChild)
+                .Include(u => u.UserRoles)
+                    .ThenInclude(ur => ur.Role)
                 .FirstOrDefaultAsync(u => u.Id == userId);
         }
 

@@ -8,14 +8,28 @@ class GradeCard extends StatelessWidget {
     super.key,
     required this.subjectName,
     required this.subjectCode,
-    required this.averageScore,
-    required this.status, // "Passed", "Failed", "NotYet"
+    this.quiz15Min,
+    this.oralTest,
+    this.test45Min,
+    this.finalExam,
   });
 
   final String subjectName;
   final String subjectCode;
-  final double averageScore;
-  final String status;
+  final double? quiz15Min;
+  final double? oralTest;
+  final double? test45Min;
+  final double? finalExam;
+
+  double get averageScore {
+    int count = 0;
+    double sum = 0;
+    if (quiz15Min != null) { sum += quiz15Min!; count++; }
+    if (oralTest != null) { sum += oralTest!; count++; }
+    if (test45Min != null) { sum += test45Min! * 2; count += 2; }
+    if (finalExam != null) { sum += finalExam! * 3; count += 3; }
+    return count > 0 ? (sum / count) : 0.0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +80,17 @@ class GradeCard extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwItems),
           
           // Scores
-          _buildScoreRow(TTexts.scoreComponent1, "8.5"),
+          _buildScoreRow("Điểm miệng", oralTest?.toString() ?? "-"),
           const SizedBox(height: 12),
-          _buildScoreRow(TTexts.scoreMidterm, "9"),
+          _buildScoreRow("Điểm 15 phút", quiz15Min?.toString() ?? "-"),
           const SizedBox(height: 12),
-          _buildScoreRow(TTexts.scoreFinal, "9"),
+          _buildScoreRow("Điểm 1 tiết", test45Min?.toString() ?? "-"),
+          const SizedBox(height: 12),
+          _buildScoreRow("Điểm thi học kỳ", finalExam?.toString() ?? "-"),
           const SizedBox(height: 16),
           const Divider(thickness: 1, color: Color(0xFFEEEEEE)),
           const SizedBox(height: 16),
-          _buildScoreRow(TTexts.scoreTotal, averageScore.toString(), isTotal: true),
+          _buildScoreRow(TTexts.scoreTotal, averageScore.toStringAsFixed(2), isTotal: true),
         ],
       ),
     );

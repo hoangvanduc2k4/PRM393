@@ -9,6 +9,14 @@ class HomeController extends ChangeNotifier {
   String _parentPhone = "";
   String get parentPhone => _parentPhone;
 
+  String _userEmail = "";
+  String get userEmail => _userEmail;
+
+  List<String> _roles = [];
+  List<String> get roles => _roles;
+  bool get isTeacher => _roles.contains("Teacher");
+  bool get isParent => _roles.contains("Parent");
+
   List<ChildModel> _children = [];
   List<ChildModel> get children => _children;
 
@@ -35,6 +43,10 @@ class HomeController extends ChangeNotifier {
       // Lấy user kèm children từ API
       final data = await ApiService.get('/api/users/$userId/with-children');
       _parentPhone = data['phone'] ?? '';
+      _userEmail = data['email'] ?? '';
+
+      final rolesRaw = data['roles'] as List<dynamic>? ?? [];
+      _roles = rolesRaw.map((e) => e.toString()).toList();
 
       final childrenRaw = data['children'] as List<dynamic>? ?? [];
       _children = childrenRaw

@@ -47,6 +47,16 @@ namespace MyFSchools.Api.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Schedule>> GetByTeacherAsync(string teacher)
+        {
+            // Search by Email or Name
+            return await _context.Schedules
+                .Where(s => s.Teacher == teacher)
+                .OrderBy(s => s.DayOfWeek)
+                .ThenBy(s => s.Slot)
+                .ToListAsync();
+        }
+
         public async Task<Schedule> CreateAsync(Schedule entity)
         {
             entity.Id = Guid.NewGuid().ToString();
